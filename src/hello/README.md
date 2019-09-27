@@ -48,4 +48,4 @@ libboost_wserialization-mt
 ```
 reference
 
-[pocoproject.org/docs/00100-GuidedTour](https://pocoproject.org/docs/00100-GuidedTour.html)
+[boost.org/doc/libs/1_68_0/libs/locale/doc/html/hello_8cpp-example](https://www.boost.org/doc/libs/1_68_0/libs/locale/doc/html/hello_8cpp-example.html)
