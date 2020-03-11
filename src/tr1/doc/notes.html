@@ -1,0 +1,8 @@
+<p>If you look in your <code>boost</code> header files youll find some references to tr1, for example</p>
+<pre><code class="language-bash">/usr/include/boost/math/tr1.hpp</code></pre>
+<p>TR1 specifies new components. For exxample</p>
+<pre><code class="language-c++">boost::shared_ptr</code></pre>
+<p>Here are some of the TR1 components</p>
+<p><code>Smart pointer</code>s are objects acting like pointers but avoids some of the problems often encountered with pointers. A smart pointer contains a native pointer as a data member and provides a set of overloaded operators that make it act like a pointer in most ways. The pointers can be dereferenced, so <code>*</code> and <code>-&gt;</code> still work. Pointer arithmetic also still works. A smart pointer is an <code>object</code>, and it contains additional meta data and member and behavior. For example a smart pointer can recognize when it has been deleted, returning NULL when this happens.</p>
+<p>Smart pointers also facilitates <i>reference counting</i>. If the pointer reference drops to zero, the object is no longer needed and can automatically be deleted. This saves you from having to worry about ownership and orphaned objects.</p>
+<p>There is also the <code>shared_ptr</code>. When copying an STL <code>auto_ptr</code> using the copy constructor for example, ownership is transferred from that being copied to that being copied to. The pointer being copied will also be set to <code>NULL</code>. We can replace <code>auto_ptr</codee> with <code>share_ptr</code></p>

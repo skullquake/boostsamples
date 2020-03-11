@@ -1,0 +1,18 @@
+<p><code>boost::numeric_cast</code> is used for numeric conversions. C++ does have numeric casting but <code>boost::numeric_cast</code> verifies if the conversion can takes place without changing the value being converted.</p>
+<pre><code class="language-c++">#include&lt;boost/numeric/conversion/cast.hpp&gt;
+#include&lt;iostream&gt;
+int main(){
+	try{
+		int i=0x10000;
+		short s=boost::numeric_cast&lt;short&gt;(i);
+		std::cout&lt;&lt;s&lt;&lt;std::endl;
+	}catch(boost::numeric::bad_numeric_cast &amp;e){
+		std::cerr&lt;&lt;e.what()&lt;&lt;std::endl;
+	}
+	return 0;
+}
+</code></pre>
+<p>This will deliver the following due an overflow:</p>
+<pre><code class="language-bash">bad numeric conversion: positive overflow</code></pre>
+<p>The verification failed and the exception was thrown because <code>0x10000</code> is too big to fit into a short.</p>
+<p>Two types of exceptions of particular interest include <code>boost::numeric::postive_overflow</code> and <code>boost::numeric::negative_overflow</code>, which can be used to specify the type of verflow that occured. Additional exceptions include <code>boost::numeric::bad_nuermic_cast</code>, which is derived from <code>std::bad_cast</code>.</p>

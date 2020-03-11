@@ -1,0 +1,14 @@
+Here we look at representing date objects in c++ using Boost<br/>
+<br/>
+Boost provides a type to represent date in gregorian calendar<br/>
+There are different ways of initializing such a date object<br/>
+<code>boost::gregorian::date(1990,1,1);</code><br/>
+<code>boost::gregorian::date("1990-01-01");</code><br/>
+<code>boost::gregorian::from_undelimited_string("19900101");</code><br/>
+<br/>
+You can access the year, month, or day attributes using the year(), month(), and day() member functions of a date object. The day of week can be accessed using the day_of_week() member function<br/>
+<br/>
+There is also a way to initialize a date object with todays date instead of a hardcoded date or a date generated or date read from a database (try this out with Postgres or MySQL)<br/>
+<br/>
+You can initialize a date object with current date in UTC Timezone using the <code>universal_day()</code> function<br/>
+<br/>

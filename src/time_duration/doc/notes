@@ -1,0 +1,6 @@
+whereas boost::gregorian::date deals with date, you can use boost::posix_time to deal with time in seconds and so on
+
+you can actually combine it
+for example
+
+boost::gregorian::date("1990-01-01") +boost::posix_time::seconds(10)

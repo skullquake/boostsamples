@@ -1,0 +1,22 @@
+<p>Here we look at lambda expressions. We can use boost lambda to initialize elements in a list or vector as follows</p>
+<pre><code class="language-c++">#include&lt;boost/lambda/lambda.hpp&gt;
+#include&lt;iostream&gt;
+int main(){
+	std::list&lt;int&gt; v(10);
+	for_each(
+		v.begin(),
+		v.end(),
+		boost::lambda::_1=1
+	);
+	for(
+		std::list&lt;int&gt;::iterator it=v.begin();
+		it!=v.end();
+		++it
+	){
+		std::cout&lt;&lt;(*it)&lt;&lt;std::endl;
+	}
+
+	return 0;
+}
+</code></pre>
+<p><code>boost::lambda::_1</code> creates a <i>lambda functor</i> which assigns the value 1 to every element in <code>v</code>. We can also use this to execute a function with the original value passed as argument and the result stored back in the element being iterated through, but first we need to create a container for pointers. You can also do this with boost as follows, using <i>transform</i></p>

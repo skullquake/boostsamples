@@ -1,0 +1,34 @@
+<p>Boost's <code>Random</code> library can be used to create random numbers. Usually people use <code>std::rand()</code> from the C++ standard function library, but using <code>boost::random</code> has some advantages over this. To use it include the following:</p>
+<pre><code class="language-c++">#include&lt;boost/random.hpp&gt;</code></pre>
+<p>In terms of a simple example:</p>
+<pre><code class="language-c++">std::time_t now=std::time(0);
+boost::random::mt19937 gen{static_cast&lt;std::uint32_t&gt;(now)};
+std::cout&lt;&lt;gen()&lt;&lt;std::endl;</code></pre>
+<p>Here the random number generator <code>boost::random::mt19937</code> is used with its <code>gen()</code> operator to generate a random number. Just like <code>std::rand</code> we can seed it. The <code>boost::random::mt19937</code> random number generator generates random integers. All the random number generators define the type <code>result_type</code> to determine the type of random numbers they generate. For <code>boost::random::mt19937</code> the <code>result_type</code> is <code>boost::uint32_t</code>.</p>
+<p>With <code>boost::random</code> we can also generate random numbers in ranges as follows:</p>
+<pre><code class="language-c++">boost::random::mt19937 rnd(std::time(0));
+boost::random::uniform_int_distribution&lt;int&gt; uid(0,32);
+int r=uid(rnd);
+std::cout&lt;&lt;r&lt;&lt;std::endl;
+}</code></pre>
+<p>All the random number generates provide two member functions <code>min()</code> and <code>max()</code> to indicate the smallest as well as the largers generatable numbers</p>
+<p>The random numbers provided by <code>boost::random</code> are <i>pseudo-random</i> number generators, meaning that they don't generate real random numbers. They are based on algorithms that generate <i>seemingly</i> real random numbers. These type of random number generators usually need to be initialized, as we do in the examples.</p>
+<p>Boost does provide a <i>real</i> random number generator, but the operating system has to provision the source. For this we use <code>boost::random::random_device</code>, as in the following example:</p>
+<pre><code class="language-c++">#include&lt;boost/random/random_device.hpp&gt;
+...
+boost::random::random_device rd;
+std::cout&lt;&lt;rd()&lt;&lt;std::endl;
+...</code></pre>
+<p>You'll also need to link agains the appropriate library, <code>/usr/lib/libboost_random.so</code></p>
+<pre><code class="language-makefile">CC=g++
+SRC=./src/a.cpp
+BIN=./bin/a.out
+CFLAGS=-std=c++11
+LIBS=\
+	-lboost_system\
+	-lboost_random
+$(BIN): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(BIN)
+.phony:clean
+clean:
+	rm $(BIN)</code></pre>

@@ -1,0 +1,35 @@
+<p>Boost's <i>lexical_cast</i> can be used to cast types. The cast operators can convert numbers of different types as well as cast to and from strings. To use it you have to include <code>boost/lexical_cast.hpp</code>.</p>
+<pre><code class="language-c++">#include&lt;boost/lexical_cast.hpp&gt;
+#include&lt;string&gt;
+#include&lt;iostream&gt;
+int main(){
+	std::string si(&quot;1&quot;);
+	std::string sj(&quot;1&quot;);
+	int i=boost::lexical_cast&lt;int&gt;(si);
+	int j=boost::lexical_cast&lt;int&gt;(sj);
+	return 0;
+}</code></pre>
+<p>Build as follows:</p>
+<pre><code class="language-makefile">CC=g++
+SRC=./src/a.cpp
+BIN=./bin/a.out
+CFLAGS=-std=c++11
+LIBS=\
+	-lboost_system
+$(BIN): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(BIN)
+.phony:clean
+clean:
+	rm $(BIN)</code></pre>
+<p>Internally <code>boost::lexcial_cast</code> uses streams to perform the conversions, and therefore only types with overloaded <code>operator&lt;&lt;</code> and <code>operator&gt;&gt;</code> can be converted.</p>
+<p>You can handle errors with <code>boost::bad_lexical_cast</code> as follows:</p>
+<pre><code class="language-c++">try{
+	std::string sk("foo");
+	int k=boost::lexical_cast<int>(sk);
+	std::cout&lt;&lt;k&lt;&lt;std::endl;
+}catch(const boost::bad_lexical_cast &e){
+	std::cerr&lt;&lt;e.what()&lt;&lt;std::endl;
+}</code></pre>
+<p>This should throw an error and be caught, delivering the following output:</p>
+<pre><code class="language-makefile">CC=g++bad lexical cast: source type value could not be interpreted as target</code></pre>
+<p>We use the <code>e.what()</code> member function of <code>boost::bad_cast</code>, from which <code>boost::bad_lexical_cast</code> is derived, to get the <code>std::string</code> error message.</p>

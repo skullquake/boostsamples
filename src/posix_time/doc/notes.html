@@ -1,0 +1,55 @@
+Whereas <code>boost::gregorian::date</code> deals with date, you can use <code>boost::posix_time</code> to deal with time in seconds and so on<br/>
+<br/>
+This library is very similar to <code>std::chrono</code> from STL. Its a non-adjusted time system and has stable calculation properties.<br>
+<br/>
+You may combine posix_time with gregorian, as in the following example:</br>
+<br/>
+<code style="white-space:pre;color:#888888;line-height:8px;">
+#include&quot;boost/date_time/posix_time/posix_time.hpp&quot;
+#include&quot;boost/date_time/gregorian/gregorian.hpp&quot;
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+int main(int argc,char** argv){
+	boost::gregorian::date d(2002,boost::gregorian::Feb,1);
+	boost::posix_time::ptime t1(
+		d,
+		boost::posix_time::hours(5)+
+		boost::posix_time::minutes(4)+
+		boost::posix_time::seconds(2)+
+		boost::posix_time::millisec(1)
+	);
+	boost::posix_time::ptime t2=t1-
+		boost::posix_time::hours(5)-
+		boost::posix_time::minutes(4)-
+		boost::posix_time::seconds(2)-
+		boost::posix_time::millisec(1);
+	boost::posix_time::time_duration td=t2-t1;
+	std::cout&lt;&lt;boost::posix_time::to_simple_string(t2)
+		&lt;&lt;&quot; - &quot;
+		&lt;&lt;boost::posix_time::to_simple_string(t1)
+		&lt;&lt;&quot; = &quot;
+		&lt;&lt;boost::posix_time::to_simple_string(td)
+		&lt;&lt;std::endl;
+	return 0;
+}
+</code>
+<br/>
+You can use <code>boost::posix_time::second_clock::local_time()</code> to get the current time. There also exists a millisecond clock for a finer resolution.<br/>
+<br/>
+An interesting feature is the <code>boost::posix_time::time_iterator</code> which can be used to iterate over time. The constructor <code>boost::posix_time::titr()</code> takes two arguments, a start time and the amount to increase the iterator by upon iteration.<br/>
+<code style="white-space:pre;color:#888888;line-height:8px;">
+void demoiterator(){
+	boost::posix_time::ptime now=boost::posix_time::second_clock::local_time();
+	boost::gregorian::date today=now.date();
+	boost::gregorian::date tommorrow=today+boost::gregorian::days(1);
+	boost::posix_time::ptime tommorrow_start(tommorrow);
+	boost::posix_time::time_iterator titr(now,boost::posix_time::hours(1));
+	for(;titr&lt;tommorrow_start;++titr){
+		std::cout&lt;&lt;boost::posix_time::to_simple_string(*titr)&lt;&lt;std::endl;
+	}
+	boost::posix_time::time_duration remaining=tommorrow_start-now;
+	std::cout&lt;&lt;&quot;Time left till midnight: &quot;
+		&lt;&lt;boost::posix_time::to_simple_string(remaining)
+		&lt;&lt;std::endl;
+}
+</code>

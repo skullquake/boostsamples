@@ -1,0 +1,75 @@
+<p>Boost provides a set of useful libraries that makes programming c++ much easier. Some of the boost libraries are headers only and some are compiled libraries, either static or shared, depending on how they were built. The built libraries include:</p>
+<ul>
+	<li>
+		<b>Boost.Chrono</b>: This is used for clock operations and calculating durations
+	</li>
+	<li>
+		<b>Boost.Context</b>: This is used to create higher-level abstractions like coroutines and cooperative threads.
+	</li>
+	<li>
+		<b>Boost.Filesystem</b>: This is used to deal with files and directories.
+	</li>
+	<li>
+		<b>Boost.GraphParallel</b>: This extends <b>Boost Graph Library (BGL)</b> and is used for parallel and distributed computing.
+	</li>
+	<li>
+		<b>Boost.IOStreams</b>: This is used to write and read data using streams. You can for example use this to load a file into memory or write compressed data in GZIP format.
+	</li>
+	<li>
+		<b>Boost.Locale</b>: To localize applications into other user languages.
+	</li>
+	<li>
+		<b>Boost.MPI</b>: This is used to create programs that executes tasks concurrently. It stands for <i>Message Passing Interface</i>.
+	</li>
+	<li>
+		<b>Boost.ProgramOptions</b>: This is used to parse command-line options.
+	</li>
+	<li>
+		<b>Boost.Python</b>: Used to parse the <i>Python</i> language in C++ code.
+	</li>
+	<li>
+		<b>Boost.Regex</b>: This is used to apply regular expressions.
+	</li>
+	<li>
+		<b>Boost.Serialization</b>: To convert objects into series of bytes for saving to disk or sending over a network for example.
+	</li>
+	<li>
+		<b>Boost.Signals</b>: To create signals, to which functions will respond and execute.
+	</li>
+	<li>
+		<b>Boost.System</b>: This is used to define errors. It contains four classes: <code>boost::system::error_code</code>, <code>boost::system::error_category</code>, <code>boost::system::error_condition</code> and <code>boost::system::system_error</code>.
+	</li>
+	<li>
+		<b>Boost.Thread</b>: This is used for threaded programming. Classes for synchronized access on multiple-thread data are provided.
+	</li>
+	<li>
+		<b>Boost.Timer</b>: This is used to measure code performance using clocks.
+	</li>
+	<li>
+		<b>Boost.Wave</b>: Provides a reuasable C preprocessor that can be used in C++ code.
+	</li>
+</ul>
+<p>There are also some libraries that have optional, seperately compiled binaries:</p>
+<ul>
+	<li>
+		<b>Boost.DateTime</b>: Used to process time and data data.
+	</li>
+	<li>
+		<b>Boost.Graph</b>: Used for 2D graphics.
+	</li>
+	<li>
+		<b>Boost.Math</b>: Deals with math formulas.
+	</li>
+	<li>
+		<b>Boost.Random</b>: This is used to generate random numbers.
+	</li>
+	<li>
+		<b>Boost.Test</b>: This is used to write and organize test programs.
+	</li>
+	<li>
+		<b>Boost.Exception</b>: Used to add data to an exception after it has been thrown.
+	</li>
+</ul>
+<p>Boost provides lots of useful features not available in STL, as well as some alternatives to work around some of STL's implementations or designs. It also has excellent documentation with examples.</p>
+<p>Most of the core classes are templates, and to use them you need to include the appropriate set of header files. Also, the compiled libraries are rather large, and actually not feasible for smaller projects, and can add to compile times.</p>
+
